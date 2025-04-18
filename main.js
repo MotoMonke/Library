@@ -23,9 +23,31 @@ function removeAllChildNodes(parent) {
 }
 function updateContainer(){
     myLibrary.forEach(obj=>{
+        //creating div for information about book
         const div=document.createElement("div");
         div.className="book-container";
         container.appendChild(div);
+        //title
+        const title=obj.title;
+        const titleText=document.createElement("span");
+        titleText.innerText=title;
+        div.appendChild(titleText);
+        //author
+        const author=obj.author;
+        const authorText=document.createElement("span");
+        authorText.innerText=author;
+        div.appendChild(authorText);
+        //amount of pages
+        const pages=obj.pages;
+        const pagesText=document.createElement("span");
+        pagesText.innerText=pages;
+        div.appendChild(pagesText);
+        //red or not (TODO:update it for yes or no radiobuttons)
+        const red=obj.red;
+        const redText=document.createElement("span");
+        redText.innerText=red;
+        div.appendChild(redText);
+
     });
 }
 
