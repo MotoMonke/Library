@@ -22,11 +22,11 @@ function removeAllChildNodes(parent) {
     }
 }
 function changeReadStatus(button){
-    if(button.id==="read"){
-        button.id="not-read"
+    if(button.className==="read"){
+        button.className="not-read"
         button.innerText="Not Read"
     }else{
-        button.id="read"
+        button.className="read"
         button.innerText="Read"
     }
 }
@@ -36,6 +36,13 @@ function changeObjectReadValue(obj){
     }else{
         obj.red=true;
     }
+}
+function removeObj(obj,div){
+    div.parentNode.removeChild(div);
+    const index=myLibrary.indexOf(obj);
+    myLibrary.splice(index,1);
+    removeAllChildNodes(container);
+    updateContainer();
 }
 function updateContainer(){
     myLibrary.forEach(obj=>{
@@ -62,20 +69,27 @@ function updateContainer(){
         const red=obj.red;
         const button=document.createElement("button");
         if(red===true){
-            button.id="read";
+            button.className="read";
             button.innerText="Read";
         }else{
-            button.id="not-read";
+            button.className="not-read";
             button.innerText="Not Read";
         }
         div.appendChild(button);
-        button.addEventListener('click',()=>{
+        button.addEventListener("click",()=>{
             changeReadStatus(button);
             changeObjectReadValue(obj);
         });
-        
+        //delete button
+        const deleteButton=document.createElement("button");
+        deleteButton.className="deleteButton";
+        deleteButton.innerText="Delete";
+        deleteButton.addEventListener("click",()=>{
+            removeObj(obj,div);
+        })
+        div.appendChild(deleteButton);
     });
-    console.table(myLibrary);
+    
 }
 
 openButton.addEventListener("click",()=>{
@@ -94,4 +108,4 @@ submitButton.addEventListener("click",()=>{
     updateContainer();
 });
 
-console.table(myLibrary);
+
