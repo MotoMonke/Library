@@ -21,6 +21,22 @@ function removeAllChildNodes(parent) {
         parent.removeChild(parent.firstChild);
     }
 }
+function changeReadStatus(button){
+    if(button.id==="read"){
+        button.id="not-read"
+        button.innerText="Not Read"
+    }else{
+        button.id="read"
+        button.innerText="Read"
+    }
+}
+function changeObjectReadValue(obj){
+    if(obj.red===true){
+        obj.red=false;
+    }else{
+        obj.red=true;
+    }
+}
 function updateContainer(){
     myLibrary.forEach(obj=>{
         //creating div for information about book
@@ -29,26 +45,37 @@ function updateContainer(){
         container.appendChild(div);
         //title
         const title=obj.title;
-        const titleText=document.createElement("span");
+        const titleText=document.createElement("div");
         titleText.innerText=title;
         div.appendChild(titleText);
         //author
         const author=obj.author;
-        const authorText=document.createElement("span");
+        const authorText=document.createElement("div");
         authorText.innerText=author;
         div.appendChild(authorText);
         //amount of pages
         const pages=obj.pages;
-        const pagesText=document.createElement("span");
+        const pagesText=document.createElement("div");
         pagesText.innerText=pages;
         div.appendChild(pagesText);
-        //red or not (TODO:update it for yes or no radiobuttons)
+        //readed or not (TODO:update it for yes or no radiobuttons)
         const red=obj.red;
-        const redText=document.createElement("span");
-        redText.innerText=red;
-        div.appendChild(redText);
-
+        const button=document.createElement("button");
+        if(red===true){
+            button.id="read";
+            button.innerText="Read";
+        }else{
+            button.id="not-read";
+            button.innerText="Not Read";
+        }
+        div.appendChild(button);
+        button.addEventListener('click',()=>{
+            changeReadStatus(button);
+            changeObjectReadValue(obj);
+        });
+        
     });
+    console.table(myLibrary);
 }
 
 openButton.addEventListener("click",()=>{
@@ -59,12 +86,12 @@ submitButton.addEventListener("click",()=>{
     const title=document.getElementById("title").value;
     const author=document.getElementById("author").value;
     const pages=document.getElementById("pages").value;
-    const red=document.getElementById("red").value;
-    addBookToLibrary(title,author,pages,red);
+    const readed=document.getElementById("red");
+    addBookToLibrary(title,author,pages,(readed.checked===true?true:false));
     form.reset();
     modal.close();
     removeAllChildNodes(container);
     updateContainer();
 });
-console.table(myLibrary);
 
+console.table(myLibrary);
