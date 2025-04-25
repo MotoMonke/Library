@@ -10,12 +10,13 @@
     <button data-open-modal id="addBook">Add book</button>
     <dialog data-modal>
         <form>
-            <input type="text" id="title">
-            <input type="text" id="author">
-            <input type="number" id="pages">
+            <input type="text" id="title" required>
+            <input type="text" id="author" required>
+            <input type="number" id="pages" required>
             <input type="checkbox" id="red">
+            <button type="submit" id="submit">Submit</button>
         </form>
-        <button data-close-modal id="submit">Submit</button>
+        
     </dialog>
     <div id="container">
 

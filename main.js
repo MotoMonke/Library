@@ -96,7 +96,8 @@ openButton.addEventListener("click",()=>{
     modal.showModal();
 });
 
-submitButton.addEventListener("click",()=>{
+form.addEventListener("submit",(e)=>{
+    e.preventDefault();
     const title=document.getElementById("title").value;
     const author=document.getElementById("author").value;
     const pages=document.getElementById("pages").value;
