@@ -71,13 +71,16 @@ main{
 dialog{
     border:none;
     border-radius: 10px;
-    height:10rem;
+    height:15rem;
+    position: relative;
+    overflow: hidden;
 }
 dialog form{
     height:100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content:space-around;
+    padding-top: 10px;
     font-size: 1.5rem;
 }
 dialog form button{
@@ -86,4 +89,12 @@ dialog form button{
     border: none;
     background-color: greenyellow;
     padding:5px 0;
+}
+#close-dialog{
+    position: absolute;
+    right:2px;
+    top:5px;
+    border:none;
+    background-color: red;
+    color:white;
 }

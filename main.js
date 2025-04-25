@@ -5,6 +5,7 @@ const submitButton=document.querySelector("[data-close-modal]");
 const modal=document.querySelector("[data-modal]");
 const form=document.querySelector("form");
 const container=document.getElementById("container");
+const closeDialog=document.getElementById("close-dialog");
 
 class Book{
     constructor(title,author,pages,red,id){
@@ -119,6 +120,9 @@ function Factory(){
         functions.removeAllChildNodes(container);
         functions.updateContainer();
     });
+    closeDialog.addEventListener("click",()=>{
+        modal.close();
+    })
  })();
 
 
