@@ -25,17 +25,17 @@ function Factory(){
         //title
         const title=obj.title;
         const titleText=document.createElement("div");
-        titleText.innerText=title;
+        titleText.innerText="Title: "+title;
         div.appendChild(titleText);
         //author
         const author=obj.author;
         const authorText=document.createElement("div");
-        authorText.innerText=author;
+        authorText.innerText="Author: "+author;
         div.appendChild(authorText);
         //amount of pages
         const pages=obj.pages;
         const pagesText=document.createElement("div");
-        pagesText.innerText=pages;
+        pagesText.innerText="Pages: "+pages;
         div.appendChild(pagesText);
         
         const red=obj.red;

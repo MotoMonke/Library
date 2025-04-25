@@ -1,0 +1,73 @@
+:root{
+   --color-1:#1D3124;
+   --color-2:#E59560;
+   --color-3:#BACEC1;
+   --color-4:#F6F4E8;
+}
+body{
+    margin:0;
+    padding: 0;
+    height:100vh;
+    width:100vw;
+}
+
+header{
+    background-color:var(--color-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:5rem;
+}
+header button{
+    background-color: var(--color-2);
+    box-sizing: border-box;
+    border:none;
+    width:10rem;
+    height: 2rem;
+    font-size:1rem;
+    font-weight: bold;
+}
+main{
+    height:100%;
+    background-color: var(--color-4);
+}
+#container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, max-content));
+    gap: 5rem;
+    justify-content: center;
+    padding:1rem;
+}
+  
+.book-container{
+    background-color: var(--color-3);
+    border-radius: 10px;
+    padding:15px 0;
+    display: flex;
+    flex-direction: column;
+    max-width:300px;
+    text-align: center;
+    font-size: 1.5rem;
+    gap:8px;
+}
+.book-container button{
+    font-size:1rem;
+}
+.read{
+    background-color: greenyellow;
+    border:none;
+    padding:5px 0;
+}
+.not-read{
+    border:none;
+    padding: 5px 0;
+    background-color: rgb(255, 58, 58);
+}
+.deleteButton{
+    border:none;
+    padding:5px 0;
+    background-color: var(--color-2);
+}
+dialog{
+    
+}
