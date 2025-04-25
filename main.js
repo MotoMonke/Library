@@ -6,12 +6,14 @@ const modal=document.querySelector("[data-modal]");
 const form=document.querySelector("form");
 const container=document.getElementById("container");
 
-function Book(title,author,pages,red,id){
-    this.title=title;
-    this.author=author;
-    this.pages=pages;
-    this.red=red;
-    this.id=id;
+class Book{
+    constructor(title,author,pages,red,id){
+        this.title=title;
+        this.author=author;
+        this.pages=pages;
+        this.red=red;
+        this.id=id;
+    }
 }
 function addBookToLibrary(title,author,pages,red) {
     myLibrary.push(new Book(title,author,pages,red,crypto.randomUUID()));
@@ -65,7 +67,7 @@ function updateContainer(){
         const pagesText=document.createElement("div");
         pagesText.innerText=pages;
         div.appendChild(pagesText);
-        //readed or not (TODO:update it for yes or no radiobuttons)
+        
         const red=obj.red;
         const button=document.createElement("button");
         if(red===true){
