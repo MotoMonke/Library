@@ -15,39 +15,9 @@ class Book{
         this.id=id;
     }
 }
-function addBookToLibrary(title,author,pages,red) {
-    myLibrary.push(new Book(title,author,pages,red,crypto.randomUUID()));
-}
-function removeAllChildNodes(parent) {
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }
-}
-function changeReadStatus(button){
-    if(button.className==="read"){
-        button.className="not-read"
-        button.innerText="Not Read"
-    }else{
-        button.className="read"
-        button.innerText="Read"
-    }
-}
-function changeObjectReadValue(obj){
-    if(obj.red===true){
-        obj.red=false;
-    }else{
-        obj.red=true;
-    }
-}
-function removeObj(obj,div){
-    div.parentNode.removeChild(div);
-    const index=myLibrary.indexOf(obj);
-    myLibrary.splice(index,1);
-    removeAllChildNodes(container);
-    updateContainer();
-}
-function updateContainer(){
-    myLibrary.forEach(obj=>{
+function Factory(){
+    //private functions
+    function createBoockCard(obj){
         //creating div for information about book
         const div=document.createElement("div");
         div.className="book-container";
@@ -90,25 +60,66 @@ function updateContainer(){
             removeObj(obj,div);
         })
         div.appendChild(deleteButton);
-    });
-    
+    }
+    function changeReadStatus(button){
+        if(button.className==="read"){
+            button.className="not-read"
+            button.innerText="Not Read"
+        }else{
+            button.className="read"
+            button.innerText="Read"
+        }
+    }
+    function changeObjectReadValue(obj){
+        if(obj.red===true){
+            obj.red=false;
+        }else{
+            obj.red=true;
+        }
+    }
+    function removeObj(obj,div){
+        div.parentNode.removeChild(div);
+        const index=myLibrary.indexOf(obj);
+        myLibrary.splice(index,1);
+        removeAllChildNodes(container);
+        updateContainer();
+    }
+    //public functions
+    function removeAllChildNodes(parent) {
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+        }
+    }
+    function addBookToLibrary(title,author,pages,red) {
+        myLibrary.push(new Book(title,author,pages,red,crypto.randomUUID()));
+    }
+    function updateContainer(){
+        myLibrary.forEach(obj=>{
+            createBoockCard(obj);
+        });
+        
+    }
+    return {removeAllChildNodes,addBookToLibrary,updateContainer}
 }
 
-openButton.addEventListener("click",()=>{
-    modal.showModal();
-});
+ (function(){
+    openButton.addEventListener("click",()=>{
+        modal.showModal();
+    });
+    const functions=Factory();
+    form.addEventListener("submit",(e)=>{
+        e.preventDefault();
+        const title=document.getElementById("title").value;
+        const author=document.getElementById("author").value;
+        const pages=document.getElementById("pages").value;
+        const readed=document.getElementById("red");
+        functions.addBookToLibrary(title,author,pages,(readed.checked===true?true:false));
+        form.reset();
+        modal.close();
+        functions.removeAllChildNodes(container);
+        functions.updateContainer();
+    });
+ })();
 
-form.addEventListener("submit",(e)=>{
-    e.preventDefault();
-    const title=document.getElementById("title").value;
-    const author=document.getElementById("author").value;
-    const pages=document.getElementById("pages").value;
-    const readed=document.getElementById("red");
-    addBookToLibrary(title,author,pages,(readed.checked===true?true:false));
-    form.reset();
-    modal.close();
-    removeAllChildNodes(container);
-    updateContainer();
-});
 
 
