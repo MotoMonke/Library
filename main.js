@@ -103,7 +103,7 @@ function Factory(){
     return {removeAllChildNodes,addBookToLibrary,updateContainer}
 }
 
- (function(){
+(function(){
     openButton.addEventListener("click",()=>{
         modal.showModal();
     });
@@ -123,7 +123,7 @@ function Factory(){
     closeDialog.addEventListener("click",()=>{
         modal.close();
     })
- })();
+})();
 
 
 

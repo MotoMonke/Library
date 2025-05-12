@@ -9,6 +9,7 @@ body{
     padding: 0;
     height:100vh;
     width:100vw;
+    background-color: var(--color-4);
 }
 
 header{
@@ -29,7 +30,6 @@ header button{
 }
 main{
     height:100%;
-    background-color: var(--color-4);
 }
 #container {
     display: grid;
